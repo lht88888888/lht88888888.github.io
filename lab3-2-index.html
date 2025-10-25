@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>书香狂欢季 - 图书促销活动</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Georgia', serif; }
+        body {
+            background-color: #f8f5f0; /* 米白色背景，营造纸张质感 */
+            color: #3a3226;
+        }
+        .promo-container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 20px; 
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+        }
+        
+        /* 顶部导航样式 */
+        .nav-list {
+            display: flex;
+            list-style: none;
+            margin-bottom: 20px;
+            background-color: #8b7d6b; /* 暖棕色导航栏 */
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .nav-item {
+            flex: auto;
+            text-align: center;
+        }
+        .nav-item.promo-highlight {
+            background-color: #c15c3d; /* 突出的促销红色 */
+        }
+        .nav-item.promo-highlight .nav-link {
+            color: white;
+            font-weight: bold;
+        }
+        .nav-item.promo-highlight .nav-link:hover {
+            background-color: #a84b31;
+        }
+        .nav-link {
+            display: block;
+            padding: 15px 20px;
+            color: #f8f5f0; /* 浅色文字 */
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        .nav-link:hover, .nav-link.active {
+            background-color: #6d5f4b;
+            color: white;
+        }
+        
+        /* 主要内容区布局 */
+        .main-content {
+            display: flex;
+            gap: 30px;
+        }
+        
+        /* 左侧分类列表样式 */
+        .category-sidebar {
+            width: 200px;
+            flex-shrink: 0;
+        }
+        .category-title {
+            font-size: 1.2rem;
+            color: #5d4b36;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #8b7d6b;
+        }
+        .category-list {
+            list-style: none;
+            background-color: #f1ede6;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .category-item {
+            border-bottom: 1px solid #e0d9ce;
+        }
+        .category-link {
+            display: block;
+            padding: 12px 15px;
+            color: #5d4b36;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .category-link:hover, .category-link.active {
+            background-color: #8b7d6b;
+            color: white;
+            padding-left: 20px;
+        }
+        
+        /* 右侧内容区 */
+        .content-area {
+            flex-grow: 1;
+        }
+        
+        .promo-banner { 
+            background: linear-gradient(135deg, #5d4b36, #8b7d6b); /* 暖棕色渐变横幅 */
+            color: white; 
+            padding: 40px 20px; 
+            text-align: center; 
+            border-radius: 8px; 
+            margin-bottom: 30px;
+        }
+        .promo-banner h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        .promo-banner p { font-size: 1.2rem; margin-bottom: 20px; }
+        .countdown { font-weight: bold; font-size: 1.1rem; margin-bottom: 20px; }
+        .btn { 
+            background: #c15c3d; 
+            color: white; 
+            border: none; 
+            padding: 12px 30px; 
+            font-size: 1rem; 
+            border-radius: 4px; 
+            cursor: pointer; 
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .btn:hover { 
+            background: #a84b31; 
+            transform: translateY(-2px);
+        }       
+        .promo-section { margin-bottom: 40px; }
+        .promo-section h2 { font-size: 1.8rem; margin-bottom: 20px; color: #5d4b36; border-left: 4px solid #8b7d6b; padding-left: 10px; }
+        .book-list { display: flex; flex-wrap: wrap; gap: 25px; }
+        .book-card { 
+            width: calc(25% - 19px); 
+            border: 1px solid #e0d9ce;
+            border-radius: 8px; 
+            overflow: hidden; 
+            transition: all 0.3s;
+            background-color: white;
+        }
+        .book-card:hover { 
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            transform: translateY(-3px);
+        }
+        .book-img { width: 100%; height: 250px; object-fit: cover; }
+        .book-info { padding: 15px; }
+        .book-title { font-size: 1.1rem; margin-bottom: 8px; color: #5d4b36; }
+        .book-author { color: #8b7d6b; margin-bottom: 10px; font-size: 0.9rem; }
+        .price-box { display: flex; align-items: center; gap: 15px; }
+        .original-price { text-decoration: line-through; color: #a69a86; font-size: 0.9rem; }
+        .sale-price { color: #c15c3d; font-size: 1.2rem; font-weight: bold; }     
+    </style>
+</head>
+<body>
+    <div class="promo-container">
+        <!-- 顶部导航列表 -->
+        <ul class="nav-list">
+            <li class="nav-item"><a href="#" class="nav-link active">首页</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">全部图书</a></li>
+            <li class="nav-item promo-highlight"><a href="#" class="nav-link">5折封顶区</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">满减活动</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">新书上架</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">购物车</a></li>
+        </ul>
+        
+        <!-- 主要内容区：左侧分类 + 右侧内容 -->
+        <div class="main-content">
+            <!-- 左侧分类列表 -->
+            <div class="category-sidebar">
+                <h3 class="category-title">图书分类</h3>
+                <ul class="category-list">
+                    <li class="category-item"><a href="#" class="category-link active">全部图书</a></li>
+                    <li class="category-item"><a href="#book-list" class="category-link">小说文学</a></li>
+                    <li class="category-item"><a href="#children-books" class="category-link">儿童读物</a></li>
+                    <li class="category-item"><a href="#" class="category-link">历史传记</a></li>
+                    <li class="category-item"><a href="#" class="category-link">科普读物</a></li>
+                    <li class="category-item"><a href="#" class="category-link">哲学宗教</a></li>
+                    <li class="category-item"><a href="#" class="category-link">经济管理</a></li>
+                    <li class="category-item"><a href="#" class="category-link">艺术设计</a></li>
+                    <li class="category-item"><a href="#" class="category-link">生活休闲</a></li>
+                    <li class="category-item"><a href="#" class="category-link">教材教辅</a></li>
+                </ul>
+            </div>
+            
+            <!-- 右侧内容区 -->
+            <div class="content-area">
+                <div class="promo-banner">
+                    <h1>书香狂欢季 · 全场图书5折起</h1>
+                    <p>精选千本好书，限时3天，满199减50，满299减100</p>
+                    <a href="#book-list" class="btn">立即选购</a>
+                </div>
+                
+                <section class="promo-section" id="book-list">
+                    <h2>小说文学区 - 5折封顶</h2>
+                    <div class="book-list">
+                        <div class="book-card">
+                            <img src="../Html/image/s8.jpg" alt="窄门" class="book-img">
+                            <div class="book-info">
+                                <h3 class="book-title">窄门</h3>
+                                <p class="book-author">安德烈.纪德 著</p>
+                                <div class="price-box">
+                                    <span class="original-price">¥39.8</span>
+                                    <span class="sale-price">¥19.9</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="book-card">
+                            <img src="../Html/image/s5.jpg" alt="人生海海" class="book-img">
+                            <div class="book-info">
+                                <h3 class="book-title">人生海海</h3>
+                                <p class="book-author">麦家 著</p>
+                                <div class="price-box">
+                                    <span class="original-price">¥39.5</span>
+                                    <span class="sale-price">¥19.8</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="book-card">
+                            <img src="../Html/image/s6.jpg" alt="平凡的世界" class="book-img">
+                            <div class="book-info">
+                                <h3 class="book-title">平凡的世界</h3>
+                                <p class="book-author">路遥 著</p>
+                                <div class="price-box">
+                                    <span class="original-price">¥55.0</span>
+                                    <span class="sale-price">¥27.5</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="book-card">
+                            <img src="../Html/image/s11.jpg" alt="堂吉诃德" class="book-img">
+                            <div class="book-info">
+                                <h3 class="book-title">堂吉诃德</h3>
+                                <p class="book-author">塞万提斯 著</p>
+                                <div class="price-box">
+                                    <span class="original-price">¥128.0</span>
+                                    <span class="sale-price">¥64.0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section class="promo-section" id="children-books">
+                    <h2>儿童读物区 - 满199减50</h2>
+                    <div class="book-list">
+                        <div class="book-card">
+                            <img src="../Html/image/s12.jpg" alt="爱的教育" class="book-img">
+                            <div class="book-info">
+                                <h3 class="book-title">爱的教育</h3>
+                                <p class="book-author">亚米契斯  著</p>
+                                <div class="price-box">
+                                    <span class="original-price">¥68.0</span>
+                                    <span class="sale-price">¥40.8</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="book-card">
+                            <img src="../Html/image/s13.jpg" alt="海底两万里" class="book-img">
+                            <div class="book-info">
+                                <h3 class="book-title">海底两万里</h3>
+                                <p class="book-author">凡尔纳 著</p>
+                                <div class="price-box">
+                                    <span class="original-price">¥59.0</span>
+                                    <span class="sale-price">¥35.4</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="book-card">
+                            <img src="../Html/image/s7.jpg" alt="小王子" class="book-img">
+                            <div class="book-info">
+                                <h3 class="book-title">小王子</h3>
+                                <p class="book-author">埃克苏佩里 著</p>
+                                <div class="price-box">
+                                    <span class="original-price">¥49.8</span>
+                                    <span class="sale-price">¥29.9</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="book-card">
+                            <img src="../Html/image/s9.jpg" alt="洪恩识字" class="book-img">
+                            <div class="book-info">
+                                <h3 class="book-title">洪恩识字</h3>
+                                <p class="book-author">洪恩教育 著</p>
+                                <div class="price-box">
+                                    <span class="original-price">¥88.0</span>
+                                    <span class="sale-price">¥52.8</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
