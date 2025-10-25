@@ -7,7 +7,7 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Georgia', serif; }
         body {
-            background-color: #f8f5f0; /* 米白色背景，营造纸张质感 */
+            background-color: #f8f5f0; 
             color: #3a3226;
         }
         .promo-container { 
@@ -18,13 +18,11 @@
             border-radius: 10px;
             box-shadow: 0 2px 15px rgba(0,0,0,0.05);
         }
-        
-        /* 顶部导航样式 */
         .nav-list {
             display: flex;
             list-style: none;
             margin-bottom: 20px;
-            background-color: #8b7d6b; /* 暖棕色导航栏 */
+            background-color: #8b7d6b; 
             border-radius: 8px;
             overflow: hidden;
         }
@@ -33,7 +31,7 @@
             text-align: center;
         }
         .nav-item.promo-highlight {
-            background-color: #c15c3d; /* 突出的促销红色 */
+            background-color: #c15c3d; 
         }
         .nav-item.promo-highlight .nav-link {
             color: white;
@@ -45,7 +43,7 @@
         .nav-link {
             display: block;
             padding: 15px 20px;
-            color: #f8f5f0; /* 浅色文字 */
+            color: #f8f5f0; 
             text-decoration: none;
             font-weight: 500;
             transition: background-color 0.3s;
@@ -54,14 +52,10 @@
             background-color: #6d5f4b;
             color: white;
         }
-        
-        /* 主要内容区布局 */
         .main-content {
             display: flex;
             gap: 30px;
         }
-        
-        /* 左侧分类列表样式 */
         .category-sidebar {
             width: 200px;
             flex-shrink: 0;
@@ -94,14 +88,11 @@
             color: white;
             padding-left: 20px;
         }
-        
-        /* 右侧内容区 */
         .content-area {
             flex-grow: 1;
         }
-        
         .promo-banner { 
-            background: linear-gradient(135deg, #5d4b36, #8b7d6b); /* 暖棕色渐变横幅 */
+            background: linear-gradient(135deg, #5d4b36, #8b7d6b);
             color: white; 
             padding: 40px 20px; 
             text-align: center; 
@@ -152,7 +143,6 @@
 </head>
 <body>
     <div class="promo-container">
-        <!-- 顶部导航列表 -->
         <ul class="nav-list">
             <li class="nav-item"><a href="#" class="nav-link active">首页</a></li>
             <li class="nav-item"><a href="#" class="nav-link">全部图书</a></li>
@@ -161,10 +151,7 @@
             <li class="nav-item"><a href="#" class="nav-link">新书上架</a></li>
             <li class="nav-item"><a href="#" class="nav-link">购物车</a></li>
         </ul>
-        
-        <!-- 主要内容区：左侧分类 + 右侧内容 -->
         <div class="main-content">
-            <!-- 左侧分类列表 -->
             <div class="category-sidebar">
                 <h3 class="category-title">图书分类</h3>
                 <ul class="category-list">
@@ -180,20 +167,17 @@
                     <li class="category-item"><a href="#" class="category-link">教材教辅</a></li>
                 </ul>
             </div>
-            
-            <!-- 右侧内容区 -->
             <div class="content-area">
                 <div class="promo-banner">
                     <h1>书香狂欢季 · 全场图书5折起</h1>
                     <p>精选千本好书，限时3天，满199减50，满299减100</p>
                     <a href="#book-list" class="btn">立即选购</a>
                 </div>
-                
                 <section class="promo-section" id="book-list">
                     <h2>小说文学区 - 5折封顶</h2>
                     <div class="book-list">
                         <div class="book-card">
-                            <img src="../Html/image/s8.jpg" alt="窄门" class="book-img">
+                            <img src="image/s8.jpg" alt="窄门" class="book-img">
                             <div class="book-info">
                                 <h3 class="book-title">窄门</h3>
                                 <p class="book-author">安德烈.纪德 著</p>
@@ -204,7 +188,7 @@
                             </div>
                         </div>
                         <div class="book-card">
-                            <img src="../Html/image/s5.jpg" alt="人生海海" class="book-img">
+                            <img src="image/s5.jpg" alt="人生海海" class="book-img">
                             <div class="book-info">
                                 <h3 class="book-title">人生海海</h3>
                                 <p class="book-author">麦家 著</p>
@@ -215,7 +199,7 @@
                             </div>
                         </div>
                         <div class="book-card">
-                            <img src="../Html/image/s6.jpg" alt="平凡的世界" class="book-img">
+                            <img src="image/s6.jpg" alt="平凡的世界" class="book-img">
                             <div class="book-info">
                                 <h3 class="book-title">平凡的世界</h3>
                                 <p class="book-author">路遥 著</p>
@@ -226,7 +210,7 @@
                             </div>
                         </div>
                         <div class="book-card">
-                            <img src="../Html/image/s11.jpg" alt="堂吉诃德" class="book-img">
+                            <img src="image/s11.jpg" alt="堂吉诃德" class="book-img">
                             <div class="book-info">
                                 <h3 class="book-title">堂吉诃德</h3>
                                 <p class="book-author">塞万提斯 著</p>
@@ -243,7 +227,7 @@
                     <h2>儿童读物区 - 满199减50</h2>
                     <div class="book-list">
                         <div class="book-card">
-                            <img src="../Html/image/s12.jpg" alt="爱的教育" class="book-img">
+                            <img src="image/s12.jpg" alt="爱的教育" class="book-img">
                             <div class="book-info">
                                 <h3 class="book-title">爱的教育</h3>
                                 <p class="book-author">亚米契斯  著</p>
@@ -254,7 +238,7 @@
                             </div>
                         </div>
                         <div class="book-card">
-                            <img src="../Html/image/s13.jpg" alt="海底两万里" class="book-img">
+                            <img src="image/s13.jpg" alt="海底两万里" class="book-img">
                             <div class="book-info">
                                 <h3 class="book-title">海底两万里</h3>
                                 <p class="book-author">凡尔纳 著</p>
@@ -265,7 +249,7 @@
                             </div>
                         </div>
                         <div class="book-card">
-                            <img src="../Html/image/s7.jpg" alt="小王子" class="book-img">
+                            <img src="image/s7.jpg" alt="小王子" class="book-img">
                             <div class="book-info">
                                 <h3 class="book-title">小王子</h3>
                                 <p class="book-author">埃克苏佩里 著</p>
@@ -276,7 +260,7 @@
                             </div>
                         </div>
                         <div class="book-card">
-                            <img src="../Html/image/s9.jpg" alt="洪恩识字" class="book-img">
+                            <img src="image/s9.jpg" alt="洪恩识字" class="book-img">
                             <div class="book-info">
                                 <h3 class="book-title">洪恩识字</h3>
                                 <p class="book-author">洪恩教育 著</p>
