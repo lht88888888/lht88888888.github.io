@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>书香狂欢季 - 图书促销活动</title>
+    <style>
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            font-family: Arial, sans-serif; 
+            font-weight: normal;
+        }
+        body { 
+            background-color: #f8f5f0; 
+            color: #3a3226;
+            padding-top: 60px;
+        }
+        .promo-container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 20px; 
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+        }
+        .nav-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 100;
+        }
+        .nav-list {
+            display: flex;
+            list-style: none;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #8b7d6b; 
+            border-radius: 0 0 8px 8px;
+            overflow: hidden;
+        }
+        .nav-item { 
+            flex: auto; 
+            text-align: center; 
+            position: relative;
+        }
+        .nav-item.promo-highlight { background: #c15c3d; }
+        .nav-link {
+            display: block;
+            padding: 15px 20px;
+            color: #f8f5f0; 
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+        .nav-item.promo-highlight .nav-link { color: white; }
+        .nav-link:hover, .nav-link.active { background: #6d5f4b; color: white; }
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 0 0 8px 8px;
+            overflow: hidden;
+            display: none;
+            z-index: 100;
+        }
+        .dropdown-link {
+            display: block;
+            padding: 12px 15px;
+            color: #5d4b36;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+        .dropdown-link:hover {
+            background: #f1ede6;
+        }
+        .nav-item:hover .dropdown {
+            display: block;
+        }
+        .main-content { display: flex; gap: 30px; }
+        .category-sidebar {
+            width: 200px;
+            flex-shrink: 0;
+        }
+        .category-title {
+            font-size: 1.2rem;
+            color: #5d4b36;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #8b7d6b;
+        }
+        .category-list {
+            list-style: none;
+            background: #f1ede6;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .category-item { border-bottom: 1px solid #e0d9ce; }
+        .category-link {
+            display: block;
+            padding: 12px 15px;
+            color: #5d4b36;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .category-link:hover, .category-link.active {
+            background: #8b7d6b;
+            color: white;
+            padding-left: 20px;
+        }
+        .filter-container {
+            background: #f1ede6;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .filter-title {
+            font-size: 1rem;
+            color: #5d4b36;
+            margin-bottom: 10px;
+        }
+        .filter-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .filter-btn {
+            background: white;
+            border: 1px solid #8b7d6b;
+            color: #5d4b36;
+            padding: 5px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .filter-btn:hover, .filter-btn.active {
+            background: #8b7d6b;
+            color: white;
+        }
+        .content-area { flex-grow: 1; }
+        .carousel {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+        .carousel-slides {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        .carousel-slide {
+            min-width: 100%;
+            background: linear-gradient(135deg, #5d4b36, #8b7d6b);
+            color: white; 
+            padding: 40px 20px; 
+            text-align: center;
+        }
+        .carousel-slide h1 { 
+            font-size: 2.5rem; 
+            margin-bottom: 10px; 
+            font-weight: normal; 
+        }
+        .carousel-slide p { 
+            font-size: 1.2rem; 
+            margin-bottom: 20px; 
+        }
+        .carousel-indicators {
+            position: absolute;
+            bottom: 15px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .indicator.active {
+            background: white;
+            transform: scale(1.2);
+        }
+        .btn { 
+            background: #c15c3d; 
+            color: white; 
+            border: none; 
+            padding: 12px 30px; 
+            font-size: 1rem; 
+            border-radius: 4px; 
+            cursor: pointer; 
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .btn:hover { background: #a84b31; transform: translateY(-2px); }
+        .badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #c15c3d;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            z-index: 10;
+        }
+        .badge.hot {
+            background: #e63946;
+        }
+        .badge.new {
+            background: #457b9d;
+        }
+        .badge.limit {
+            background: #f1c40f;
+            color: #333;
+        }
+        .promo-section { margin-bottom: 40px; }
+        .promo-section h2 { 
+            font-size: 1.8rem; 
+            margin-bottom: 20px; 
+            color: #5d4b36; 
+            border-left: 4px solid #8b7d6b; 
+            padding-left: 10px; 
+            font-weight: normal; 
+        }
+        .book-list { display: flex; flex-wrap: wrap; gap: 25px; }
+        .book-card { 
+            width: calc(25% - 19px); 
+            border: 1px solid #e0d9ce;
+            border-radius: 8px; 
+            overflow: hidden; 
+            transition: all 0.3s;
+            background: white;
+            position: relative; 
+        }
+        .book-card:hover { box-shadow: 0 8px 20px rgba(0,0,0,0.1); transform: translateY(-3px); }
+        
+        .book-img { width: 100%; height: 250px; object-fit: cover; }
+        .book-info { padding: 15px; }
+        .book-title { 
+            font-size: 1.1rem; 
+            margin-bottom: 8px; 
+            color: #5d4b36; 
+        }
+        .book-author { 
+            color: #8b7d6b; 
+            margin-bottom: 10px; 
+            font-size: 0.9rem; 
+        }
+        .price { 
+            color: #c15c3d; 
+            font-size: 1rem; 
+        }
+        .original-price {
+            color: #999;
+            text-decoration: line-through;
+            font-size: 0.8rem;
+            margin-left: 5px;
+        }
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #8b7d6b;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 90;
+        }
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .back-to-top:hover {
+            background: #5d4b36;
+            transform: translateY(-5px);
+        }
+        .floating-cart {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: #c15c3d;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            z-index: 90;
+            cursor: pointer;
+        }
+        .floating-cart:hover {
+            transform: scale(1.1);
+            background: #a84b31;
+        }
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: white;
+            color: #c15c3d;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-container">
+        <ul class="nav-list">
+            <li class="nav-item">
+                <a href="#" class="nav-link active">首页</a>
+                <div class="dropdown">
+                    <a href="#" class="dropdown-link">首页推荐</a>
+                    <a href="#" class="dropdown-link">畅销榜单</a>
+                    <a href="#" class="dropdown-link">活动专题</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">全部图书</a>
+                <div class="dropdown">
+                    <a href="#" class="dropdown-link">按分类浏览</a>
+                    <a href="#" class="dropdown-link">按出版社浏览</a>
+                    <a href="#" class="dropdown-link">按价格筛选</a>
+                </div>
+            </li>
+            <li class="nav-item promo-highlight">
+                <a href="#" class="nav-link">5折封顶区</a>
+                <div class="dropdown">
+                    <a href="#" class="dropdown-link">小说文学</a>
+                    <a href="#" class="dropdown-link">儿童读物</a>
+                    <a href="#" class="dropdown-link">人文社科</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">满减活动</a>
+                <div class="dropdown">
+                    <a href="#" class="dropdown-link">满199减50</a>
+                    <a href="#" class="dropdown-link">满299减100</a>
+                    <a href="#" class="dropdown-link">满499减200</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">新书上架</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">购物车</a>
+            </li>
+        </ul>
+    </div>
+    <div class="promo-container">
+        <div class="main-content">
+            <div class="category-sidebar">
+                <h3 class="category-title">图书分类</h3>
+                <ul class="category-list">
+                    <li class="category-item"><a href="#" class="category-link active">全部图书</a></li>
+                    <li class="category-item"><a href="#book-list" class="category-link">小说文学</a></li>
+                    <li class="category-item"><a href="#children-books" class="category-link">儿童读物</a></li>
+                    <li class="category-item"><a href="#" class="category-link">历史传记</a></li>
+                    <li class="category-item"><a href="#" class="category-link">科普读物</a></li>
+                    <li class="category-item"><a href="#" class="category-link">哲学宗教</a></li>
+                    <li class="category-item"><a href="#" class="category-link">经济管理</a></li>
+                    <li class="category-item"><a href="#" class="category-link">艺术设计</a></li>
+                    <li class="category-item"><a href="#" class="category-link">生活休闲</a></li>
+                    <li class="category-item"><a href="#" class="category-link">教材教辅</a></li>
+                </ul>
+            </div>
+            <div class="content-area">
+                <div class="carousel">
+                    <div class="carousel-slides">
+                        <div class="carousel-slide">
+                            <h1>书香狂欢季 · 全场图书5折起</h1>
+                            <p>精选千本好书，限时3天，满199减50，满299减100</p>
+                            <a href="#book-list" class="btn">立即选购</a>
+                        </div>
+                        <div class="carousel-slide">
+                            <h1>新书上架 · 限时特惠</h1>
+                            <p>本月新书8折起，会员额外95折</p>
+                            <a href="#" class="btn">查看新书</a>
+                        </div>
+                        <div class="carousel-slide">
+                            <h1>儿童读物 · 满200减80</h1>
+                            <p>精选绘本、科普读物，助力孩子成长</p>
+                            <a href="#children-books" class="btn">了解详情</a>
+                        </div>
+                    </div>
+                    <div class="carousel-indicators">
+                        <span class="indicator active" data-index="0"></span>
+                        <span class="indicator" data-index="1"></span>
+                        <span class="indicator" data-index="2"></span>
+                    </div>
+                </div>
+                <div class="filter-container">
+                    <h3 class="filter-title">筛选条件：</h3>
+                    <div class="filter-options">
+                        <button class="filter-btn active" data-filter="all">全部</button>
+                        <button class="filter-btn" data-filter="50以下">50元以下</button>
+                        <button class="filter-btn" data-filter="50-100">50-100元</button>
+                        <button class="filter-btn" data-filter="100以上">100元以上</button>
+                        <button class="filter-btn" data-filter="new">新品</button>
+                        <button class="filter-btn" data-filter="hot">热销</button>
+                    </div>
+                </div>
+                
+                <section class="promo-section" id="book-list">
+                    <h2>小说文学区 - 5折封顶</h2>
+                    <div class="book-list">
+                        <div class="book-card" data-price="19.9" data-type="hot">
+                            <span class="badge hot">热销</span>
+                            <img src="image/s8.jpg" alt="窄门" class="book-img">
+                            <div class="book-info">
+                                <h3 class="book-title">窄门</h3>
+                                <p class="book-author">安德烈.纪德 著</p>
+                                <span class="price">¥19.9</span>
+                                <span class="original-price">¥39.8</span>
+                            </div>
+                        </div>
+                        <div class="book-card" data-price="19.8" data-type="hot">
+                            <span class="badge hot">热销</span>
+                            <img src="image/s5.jpg" alt="人生海海" class="book-img">
+                            <div class="book-info">
+                                <h3 class="book-title">人生海海</h3>
+                                <p class="book-author">麦家 著</p>
+                                <span class="price">¥19.8</span>
+                                <span class="original-price">¥39.6</span>
+                            </div>
+                        </div>
+                        <div class="book-card" data-price="27.5" data-type="normal">
+                            <img src="image/s6.jpg" alt="平凡的世界" class="book-img">
+                            <div class="book-info">
+                                <h3 class="book-title">平凡的世界</h3>
+                                <p class="book-author">路遥 著</p>
+                                <span class="price">¥27.5</span>
+                                <span class="original-price">¥55.0</span>
+                            </div>
+                        </div>
+                        <div class="book-card" data-price="64.0" data-type="new">
+                            <span class="badge new">新品</span>
+                            <img src="image/s11.jpg" alt="堂吉诃德" class="book-img">
+                            <div class="book-info">
+                                <h3 class="book-title">堂吉诃德</h3>
+                                <p class="book-author">塞万提斯 著</p>
+                                <span class="price">¥64.0</span>
+                                <span class="original-price">¥128.0</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="promo-section" id="children-books">
+                    <h2>儿童读物区 - 满199减50</h2>
+                    <div class="book-list">
+                        <div class="book-card" data-price="40.8" data-type="normal">
+                            <img src="image/s12.jpg" alt="爱的教育" class="book-img">
+                            <div class="book-info">
+                                <h3 class="book-title">爱的教育</h3>
+                                <p class="book-author">亚米契斯 著</p>
+                                <span class="price">¥40.8</span>
+                                <span class="original-price">¥68.0</span>
+                            </div>
+                        </div>
+                        <div class="book-card" data-price="35.4" data-type="normal">
+                            <img src="image/s13.jpg" alt="海底两万里" class="book-img">
+                            <div class="book-info">
+                                <h3 class="book-title">海底两万里</h3>
+                                <p class="book-author">凡尔纳 著</p>
+                                <span class="price">¥35.4</span>
+                                <span class="original-price">¥59.0</span>
+                            </div>
+                        </div>
+                        <div class="book-card" data-price="29.9" data-type="limit">
+                            <span class="badge limit">限量</span>
+                            <img src="image/s7.jpg" alt="小王子" class="book-img">
+                            <div class="book-info">
+                                <h3 class="book-title">小王子</h3>
+                                <p class="book-author">埃克苏佩里 著</p>
+                                <span class="price">¥29.9</span>
+                                <span class="original-price">¥49.8</span>
+                            </div>
+                        </div>
+                        <div class="book-card" data-price="52.8" data-type="hot">
+                            <span class="badge hot">热销</span>
+                            <img src="image/s9.jpg" alt="洪恩识字" class="book-img">
+                            <div class="book-info">
+                                <h3 class="book-title">洪恩识字</h3>
+                                <p class="book-author">洪恩教育 著</p>
+                                <span class="price">¥52.8</span>
+                                <span class="original-price">¥88.0</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="back-to-top">↑</a>
+    <div class="floating-cart">
+        🛒
+        <span class="cart-count">0</span>
+    </div>
+    <script>
+        const slides = document.querySelector('.carousel-slides');
+        const indicators = document.querySelectorAll('.indicator');
+        let currentSlide = 0;
+        const totalSlides = indicators.length;
+        function goToSlide(index) {
+            currentSlide = index;
+            slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+            indicators.forEach((indicator, i) => {
+                if (i === currentSlide) {
+                    indicator.classList.add('active');
+                } else {
+                    indicator.classList.remove('active');
+                }
+            });
+        }
+        indicators.forEach(indicator => {
+            indicator.addEventListener('click', () => {
+                goToSlide(parseInt(indicator.dataset.index));
+            });
+        });
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            goToSlide(currentSlide);
+        }, 5000);
+        const backToTopBtn = document.querySelector('.back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+        backToTopBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const bookCards = document.querySelectorAll('.book-card');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filter = btn.dataset.filter;
+                bookCards.forEach(card => {
+                    const price = parseFloat(card.dataset.price);
+                    const type = card.dataset.type;
+                    let show = false;
+                    
+                    switch(filter) {
+                        case 'all':
+                            show = true;
+                            break;
+                        case '50以下':
+                            show = price < 50;
+                            break;
+                        case '50-100':
+                            show = price >= 50 && price <= 100;
+                            break;
+                        case '100以上':
+                            show = price > 100;
+                            break;
+                        case 'new':
+                            show = type === 'new';
+                            break;
+                        case 'hot':
+                            show = type === 'hot';
+                            break;
+                    }
+                    card.style.display = show ? 'block' : 'none';
+                });
+            });
+        });
+        const cartIcon = document.querySelector('.floating-cart');
+        const cartCount = document.querySelector('.cart-count');
+        let count = 0;
+        bookCards.forEach(card => {
+            card.addEventListener('click', () => {
+                count++;
+                cartCount.textContent = count;
+                cartIcon.classList.add('animate');
+                setTimeout(() => {
+                    cartIcon.classList.remove('animate');
+                }, 500);
+            });
+        });
+        cartIcon.addEventListener('click', () => {
+            alert(`您的购物车中有 ${count} 件商品`);
+        });
+    </script>
+</body>
+</html>
