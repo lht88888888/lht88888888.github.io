@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>书香狂欢季 - 图书促销活动</title>
+    <link rel="stylesheet" href="style.css">
     <style>
         * { 
             margin: 0; 
@@ -124,105 +125,31 @@
             font-size: 1rem;
             color: #5d4b36;
             margin-bottom: 10px;
+            display: inline-block;
+            vertical-align: middle;
         }
-        .filter-options {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        .filter-btn {
-            background: white;
-            border: 1px solid #8b7d6b;
-            color: #5d4b36;
-            padding: 5px 15px;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        .filter-btn:hover, .filter-btn.active {
-            background: #8b7d6b;
-            color: white;
-        }
-        .content-area { flex-grow: 1; }
-        .carousel {
+        .filter-select-container {
+            display: inline-block;
             position: relative;
-            border-radius: 8px;
-            overflow: hidden;
-            margin-bottom: 30px;
         }
-        .carousel-slides {
-            display: flex;
-            transition: transform 0.5s ease;
-        }
-        .carousel-slide {
-            min-width: 100%;
-            background: linear-gradient(135deg, #5d4b36, #8b7d6b);
-            color: white; 
-            padding: 40px 20px; 
-            text-align: center;
-        }
-        .carousel-slide h1 { 
-            font-size: 2.5rem; 
-            margin-bottom: 10px; 
-            font-weight: normal; 
-        }
-        .carousel-slide p { 
-            font-size: 1.2rem; 
-            margin-bottom: 20px; 
-        }
-        .carousel-indicators {
-            position: absolute;
-            bottom: 15px;
-            left: 0;
-            right: 0;
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-        }
-        .indicator {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.5);
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        .indicator.active {
-            background: white;
-            transform: scale(1.2);
-        }
-        .btn { 
-            background: #c15c3d; 
-            color: white; 
-            border: none; 
-            padding: 12px 30px; 
-            font-size: 1rem; 
-            border-radius: 4px; 
-            cursor: pointer; 
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-        .btn:hover { background: #a84b31; transform: translateY(-2px); }
-        .badge {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background: #c15c3d;
-            color: white;
-            padding: 3px 10px;
+        .filter-select {
+            padding: 8px 30px 8px 15px;
+            border: 1px solid #8b7d6b;
             border-radius: 4px;
-            font-size: 0.8rem;
-            z-index: 10;
+            background-color: white;
+            color: #5d4b36;
+            font-size: 1rem;
+            appearance: none;
+            cursor: pointer;
+            min-width: 180px;
         }
-        .badge.hot {
-            background: #e63946;
-        }
-        .badge.new {
-            background: #457b9d;
-        }
-        .badge.limit {
-            background: #f1c40f;
-            color: #333;
+        .select-arrow {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            color: #8b7d6b;
         }
         .promo-section { margin-bottom: 40px; }
         .promo-section h2 { 
@@ -330,6 +257,86 @@
             font-size: 0.8rem;
             font-weight: bold;
         }
+        .carousel {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+        .carousel-slides {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        .carousel-slide {
+            min-width: 100%;
+            background: linear-gradient(135deg, #5d4b36, #8b7d6b);
+            color: white; 
+            padding: 40px 20px; 
+            text-align: center;
+        }
+        .carousel-slide h1 { 
+            font-size: 2.5rem; 
+            margin-bottom: 10px; 
+            font-weight: normal; 
+        }
+        .carousel-slide p { 
+            font-size: 1.2rem; 
+            margin-bottom: 20px; 
+        }
+        .carousel-indicators {
+            position: absolute;
+            bottom: 15px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .indicator.active {
+            background: white;
+            transform: scale(1.2);
+        }
+        .btn { 
+            background: #c15c3d; 
+            color: white; 
+            border: none; 
+            padding: 12px 30px; 
+            font-size: 1rem; 
+            border-radius: 4px; 
+            cursor: pointer; 
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .btn:hover { background: #a84b31; transform: translateY(-2px); }
+        .badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #c15c3d;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            z-index: 10;
+        }
+        .badge.hot {
+            background: #e63946;
+        }
+        .badge.new {
+            background: #457b9d;
+        }
+        .badge.limit {
+            background: #f1c40f;
+            color: #333;
+        }
     </style>
 </head>
 <body>
@@ -344,7 +351,7 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">全部图书</a>
+                <a href="#" class="nav-link">📚全部图书</a>
                 <div class="dropdown">
                     <a href="#" class="dropdown-link">按分类浏览</a>
                     <a href="#" class="dropdown-link">按出版社浏览</a>
@@ -380,16 +387,16 @@
             <div class="category-sidebar">
                 <h3 class="category-title">图书分类</h3>
                 <ul class="category-list">
-                    <li class="category-item"><a href="#" class="category-link active">全部图书</a></li>
-                    <li class="category-item"><a href="#book-list" class="category-link">小说文学</a></li>
-                    <li class="category-item"><a href="#children-books" class="category-link">儿童读物</a></li>
-                    <li class="category-item"><a href="#" class="category-link">历史传记</a></li>
-                    <li class="category-item"><a href="#" class="category-link">科普读物</a></li>
-                    <li class="category-item"><a href="#" class="category-link">哲学宗教</a></li>
-                    <li class="category-item"><a href="#" class="category-link">经济管理</a></li>
-                    <li class="category-item"><a href="#" class="category-link">艺术设计</a></li>
-                    <li class="category-item"><a href="#" class="category-link">生活休闲</a></li>
-                    <li class="category-item"><a href="#" class="category-link">教材教辅</a></li>
+                    <li class="category-item"><a href="#" class="category-link active">📚全部图书</a></li>
+                    <li class="category-item"><a href="#book-list" class="category-link">📚小说文学</a></li>
+                    <li class="category-item"><a href="#children-books" class="category-link">📚儿童读物</a></li>
+                    <li class="category-item"><a href="#" class="category-link">📚历史传记</a></li>
+                    <li class="category-item"><a href="#" class="category-link">📚科普读物</a></li>
+                    <li class="category-item"><a href="#" class="category-link">📚哲学宗教</a></li>
+                    <li class="category-item"><a href="#" class="category-link">📚经济管理</a></li>
+                    <li class="category-item"><a href="#" class="category-link">📚艺术设计</a></li>
+                    <li class="category-item"><a href="#" class="category-link">📚生活休闲</a></li>
+                    <li class="category-item"><a href="#" class="category-link">📚教材教辅</a></li>
                 </ul>
             </div>
             <div class="content-area">
@@ -419,22 +426,24 @@
                 </div>
                 <div class="filter-container">
                     <h3 class="filter-title">筛选条件：</h3>
-                    <div class="filter-options">
-                        <button class="filter-btn active" data-filter="all">全部</button>
-                        <button class="filter-btn" data-filter="50以下">50元以下</button>
-                        <button class="filter-btn" data-filter="50-100">50-100元</button>
-                        <button class="filter-btn" data-filter="100以上">100元以上</button>
-                        <button class="filter-btn" data-filter="new">新品</button>
-                        <button class="filter-btn" data-filter="hot">热销</button>
+                    <div class="filter-select-container">
+                        <select class="filter-select" id="filterSelect">
+                            <option value="all">全部</option>
+                            <option value="50以下">50元以下</option>
+                            <option value="50-100">50-100元</option>
+                            <option value="100以上">100元以上</option>
+                            <option value="new">新品</option>
+                            <option value="hot">热销</option>
+                        </select>
+                        <span class="select-arrow">▼</span>
                     </div>
                 </div>
-                
                 <section class="promo-section" id="book-list">
                     <h2>小说文学区 - 5折封顶</h2>
                     <div class="book-list">
                         <div class="book-card" data-price="19.9" data-type="hot">
-                            <span class="badge hot">热销</span>
-                            <img src="image/s8.jpg" alt="窄门" class="book-img">
+                            
+                            <img src="../image/s8.jpg" alt="窄门" class="book-img">
                             <div class="book-info">
                                 <h3 class="book-title">窄门</h3>
                                 <p class="book-author">安德烈.纪德 著</p>
@@ -443,8 +452,8 @@
                             </div>
                         </div>
                         <div class="book-card" data-price="19.8" data-type="hot">
-                            <span class="badge hot">热销</span>
-                            <img src="image/s5.jpg" alt="人生海海" class="book-img">
+                           
+                            <img src="../image/s5.jpg" alt="人生海海" class="book-img">
                             <div class="book-info">
                                 <h3 class="book-title">人生海海</h3>
                                 <p class="book-author">麦家 著</p>
@@ -453,7 +462,7 @@
                             </div>
                         </div>
                         <div class="book-card" data-price="27.5" data-type="normal">
-                            <img src="image/s6.jpg" alt="平凡的世界" class="book-img">
+                            <img src="../image/s6.jpg" alt="平凡的世界" class="book-img">
                             <div class="book-info">
                                 <h3 class="book-title">平凡的世界</h3>
                                 <p class="book-author">路遥 著</p>
@@ -462,8 +471,8 @@
                             </div>
                         </div>
                         <div class="book-card" data-price="64.0" data-type="new">
-                            <span class="badge new">新品</span>
-                            <img src="image/s11.jpg" alt="堂吉诃德" class="book-img">
+                            
+                            <img src="../image/s11.jpg" alt="堂吉诃德" class="book-img">
                             <div class="book-info">
                                 <h3 class="book-title">堂吉诃德</h3>
                                 <p class="book-author">塞万提斯 著</p>
@@ -477,7 +486,7 @@
                     <h2>儿童读物区 - 满199减50</h2>
                     <div class="book-list">
                         <div class="book-card" data-price="40.8" data-type="normal">
-                            <img src="image/s12.jpg" alt="爱的教育" class="book-img">
+                            <img src="../image/s12.jpg" alt="爱的教育" class="book-img">
                             <div class="book-info">
                                 <h3 class="book-title">爱的教育</h3>
                                 <p class="book-author">亚米契斯 著</p>
@@ -486,7 +495,7 @@
                             </div>
                         </div>
                         <div class="book-card" data-price="35.4" data-type="normal">
-                            <img src="image/s13.jpg" alt="海底两万里" class="book-img">
+                            <img src="../image/s13.jpg" alt="海底两万里" class="book-img">
                             <div class="book-info">
                                 <h3 class="book-title">海底两万里</h3>
                                 <p class="book-author">凡尔纳 著</p>
@@ -495,8 +504,8 @@
                             </div>
                         </div>
                         <div class="book-card" data-price="29.9" data-type="limit">
-                            <span class="badge limit">限量</span>
-                            <img src="image/s7.jpg" alt="小王子" class="book-img">
+                            
+                            <img src="../image/s7.jpg" alt="小王子" class="book-img">
                             <div class="book-info">
                                 <h3 class="book-title">小王子</h3>
                                 <p class="book-author">埃克苏佩里 著</p>
@@ -505,8 +514,8 @@
                             </div>
                         </div>
                         <div class="book-card" data-price="52.8" data-type="hot">
-                            <span class="badge hot">热销</span>
-                            <img src="image/s9.jpg" alt="洪恩识字" class="book-img">
+                           
+                            <img src="../image/s9.jpg" alt="洪恩识字" class="book-img">
                             <div class="book-info">
                                 <h3 class="book-title">洪恩识字</h3>
                                 <p class="book-author">洪恩教育 著</p>
@@ -550,7 +559,6 @@
             goToSlide(currentSlide);
         }, 5000);
         const backToTopBtn = document.querySelector('.back-to-top');
-        
         window.addEventListener('scroll', () => {
             if (window.pageYOffset > 300) {
                 backToTopBtn.classList.add('show');
@@ -565,45 +573,43 @@
                 behavior: 'smooth'
             });
         });
-        const filterBtns = document.querySelectorAll('.filter-btn');
+        const filterSelect = document.getElementById('filterSelect');
         const bookCards = document.querySelectorAll('.book-card');
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                filterBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                const filter = btn.dataset.filter;
-                bookCards.forEach(card => {
-                    const price = parseFloat(card.dataset.price);
-                    const type = card.dataset.type;
-                    let show = false;
-                    
-                    switch(filter) {
-                        case 'all':
-                            show = true;
-                            break;
-                        case '50以下':
-                            show = price < 50;
-                            break;
-                        case '50-100':
-                            show = price >= 50 && price <= 100;
-                            break;
-                        case '100以上':
-                            show = price > 100;
-                            break;
-                        case 'new':
-                            show = type === 'new';
-                            break;
-                        case 'hot':
-                            show = type === 'hot';
-                            break;
-                    }
-                    card.style.display = show ? 'block' : 'none';
-                });
+        
+        filterSelect.addEventListener('change', () => {
+            const filter = filterSelect.value;
+            bookCards.forEach(card => {
+                const price = parseFloat(card.dataset.price);
+                const type = card.dataset.type;
+                let show = false;
+                
+                switch(filter) {
+                    case 'all':
+                        show = true;
+                        break;
+                    case '50以下':
+                        show = price < 50;
+                        break;
+                    case '50-100':
+                        show = price >= 50 && price <= 100;
+                        break;
+                    case '100以上':
+                        show = price > 100;
+                        break;
+                    case 'new':
+                        show = type === 'new';
+                        break;
+                    case 'hot':
+                        show = type === 'hot';
+                        break;
+                }
+                card.style.display = show ? 'block' : 'none';
             });
         });
         const cartIcon = document.querySelector('.floating-cart');
         const cartCount = document.querySelector('.cart-count');
         let count = 0;
+        
         bookCards.forEach(card => {
             card.addEventListener('click', () => {
                 count++;
