@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>书香狂欢季 - 图书促销活动</title>
+    <link rel="stylesheet" href="2.css">
+</head>
+<body>
+    <div class="nav-container">
+        <ul class="nav-list">
+            <li class="nav-item">
+                <a href="#" class="nav-link active">首页</a>
+                <div class="dropdown">
+                    <a href="#" class="dropdown-link">首页推荐</a>
+                    <a href="#" class="dropdown-link">畅销榜单</a>
+                    <a href="#" class="dropdown-link">活动专题</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">📚全部图书</a>
+                <div class="dropdown">
+                    <a href="#" class="dropdown-link">按分类浏览</a>
+                    <a href="#" class="dropdown-link">按出版社浏览</a>
+                    <a href="#" class="dropdown-link">按价格筛选</a>
+                </div>
+            </li>
+            <li class="nav-item promo-highlight">
+                <a href="#" class="nav-link">5折封顶区</a>
+                <div class="dropdown">
+                    <a href="#" class="dropdown-link">小说文学</a>
+                    <a href="#" class="dropdown-link">儿童读物</a>
+                    <a href="#" class="dropdown-link">人文社科</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">满减活动</a>
+                <div class="dropdown">
+                    <a href="#" class="dropdown-link">满199减50</a>
+                    <a href="#" class="dropdown-link">满299减100</a>
+                    <a href="#" class="dropdown-link">满499减200</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">新书上架</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">购物车</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link login-link">登录/注册</a>
+            </li>
+        </ul>
+    </div>
+    <div class="login-modal">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <h2 class="modal-title">用户登录</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username" class="form-label">用户名</label>
+                    <input type="text" id="username" class="form-input" placeholder="请输入用户名" required>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="form-label">邮箱</label>
+                    <input type="email" id="email" class="form-input" placeholder="请输入邮箱" required>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="form-label">密码</label>
+                    <input type="password" id="password" class="form-input" placeholder="请输入密码" required>
+                </div>
+                <div class="remember-group">
+                    <input type="checkbox" id="remember" class="remember-checkbox">
+                    <label for="remember">记住我</label>
+                </div>
+                <button type="submit" class="login-btn">登录</button>
+                <a href="#" class="register-link">还没有账号？立即注册</a>
+            </form>
+        </div>
+    </div>
+
+    <div class="promo-container">
+        <div class="main-content">
+            <div class="category-sidebar">
+                <h3 class="category-title">图书分类</h3>
+                <ul class="category-list">
+                    <li class="category-item"><a href="#" class="category-link active">📚全部图书</a></li>
+                    <li class="category-item"><a href="#book-list" class="category-link">📚小说文学</a></li>
+                    <li class="category-item"><a href="#children-books" class="category-link">📚儿童读物</a></li>
+                    <li class="category-item"><a href="#" class="category-link">📚历史传记</a></li>
+                    <li class="category-item"><a href="#" class="category-link">📚科普读物</a></li>
+                    <li class="category-item"><a href="#" class="category-link">📚哲学宗教</a></li>
+                    <li class="category-item"><a href="#" class="category-link">📚经济管理</a></li>
+                    <li class="category-item"><a href="#" class="category-link">📚艺术设计</a></li>
+                    <li class="category-item"><a href="#" class="category-link">📚生活休闲</a></li>
+                    <li class="category-item"><a href="#" class="category-link">📚教材教辅</a></li>
+                </ul>
+            </div>
+            <div class="content-area">
+                <div class="carousel">
+                    <div class="carousel-slides">
+                        <div class="carousel-slide">
+                            <h1>书香狂欢季 · 全场图书5折起</h1>
+                            <p>精选千本好书，限时3天，满199减50，满299减100</p>
+                            <a href="#book-list" class="btn">立即选购</a>
+                        </div>
+                        <div class="carousel-slide">
+                            <h1>新书上架 · 限时特惠</h1>
+                            <p>本月新书8折起，会员额外95折</p>
+                            <a href="#" class="btn">查看新书</a>
+                        </div>
+                        <div class="carousel-slide">
+                            <h1>儿童读物 · 满200减80</h1>
+                            <p>精选绘本、科普读物，助力孩子成长</p>
+                            <a href="#children-books" class="btn">了解详情</a>
+                        </div>
+                    </div>
+                    <div class="carousel-indicators">
+                        <span class="indicator active" data-index="0"></span>
+                        <span class="indicator" data-index="1"></span>
+                        <span class="indicator" data-index="2"></span>
+                    </div>
+                </div>
+                <div class="filter-container">
+                    <h3 class="filter-title">筛选条件：</h3>
+                    <div class="filter-select-container">
+                        <select class="filter-select" id="filterSelect">
+                            <option value="all">全部</option>
+                            <option value="50以下">50元以下</option>
+                            <option value="50-100">50-100元</option>
+                            <option value="100以上">100元以上</option>
+                            <option value="new">新品</option>
+                            <option value="hot">热销</option>
+                        </select>
+                        <span class="select-arrow">▼</span>
+                    </div>
+                </div>
+                <section class="promo-section" id="book-list">
+                    <h2>小说文学区 - 5折封顶</h2>
+                    <div class="book-list">
+                        <div class="book-card" data-price="19.9" data-type="hot">
+                            <img src="../image/s8.jpg" alt="窄门" class="book-img">
+                            <div class="book-info">
+                                <h3 class="book-title">窄门</h3>
+                                <p class="book-author">安德烈.纪德 著</p>
+                                <span class="price">¥19.9</span>
+                                <span class="original-price">¥39.8</span>
+                            </div>
+                        </div>
+                        <div class="book-card" data-price="19.8" data-type="hot">
+                            <img src="../image/s5.jpg" alt="人生海海" class="book-img">
+                            <div class="book-info">
+                                <h3 class="book-title">人生海海</h3>
+                                <p class="book-author">麦家 著</p>
+                                <span class="price">¥19.8</span>
+                                <span class="original-price">¥39.6</span>
+                            </div>
+                        </div>
+                        <div class="book-card" data-price="27.5" data-type="normal">
+                            <img src="../image/s6.jpg" alt="平凡的世界" class="book-img">
+                            <div class="book-info">
+                                <h3 class="book-title">平凡的世界</h3>
+                                <p class="book-author">路遥 著</p>
+                                <span class="price">¥27.5</span>
+                                <span class="original-price">¥55.0</span>
+                            </div>
+                        </div>
+                        <div class="book-card" data-price="64.0" data-type="new">
+                            <img src="../image/s11.jpg" alt="堂吉诃德" class="book-img">
+                            <div class="book-info">
+                                <h3 class="book-title">堂吉诃德</h3>
+                                <p class="book-author">塞万提斯 著</p>
+                                <span class="price">¥64.0</span>
+                                <span class="original-price">¥128.0</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="promo-section" id="children-books">
+                    <h2>儿童读物区 - 满199减50</h2>
+                    <div class="book-list">
+                        <div class="book-card" data-price="40.8" data-type="normal">
+                            <img src="../image/s12.jpg" alt="爱的教育" class="book-img">
+                            <div class="book-info">
+                                <h3 class="book-title">爱的教育</h3>
+                                <p class="book-author">亚米契斯 著</p>
+                                <span class="price">¥40.8</span>
+                                <span class="original-price">¥68.0</span>
+                            </div>
+                        </div>
+                        <div class="book-card" data-price="35.4" data-type="normal">
+                            <img src="../image/s13.jpg" alt="海底两万里" class="book-img">
+                            <div class="book-info">
+                                <h3 class="book-title">海底两万里</h3>
+                                <p class="book-author">凡尔纳 著</p>
+                                <span class="price">¥35.4</span>
+                                <span class="original-price">¥59.0</span>
+                            </div>
+                        </div>
+                        <div class="book-card" data-price="29.9" data-type="limit">
+                            <img src="../image/s7.jpg" alt="小王子" class="book-img">
+                            <div class="book-info">
+                                <h3 class="book-title">小王子</h3>
+                                <p class="book-author">埃克苏佩里 著</p>
+                                <span class="price">¥29.9</span>
+                                <span class="original-price">¥49.8</span>
+                            </div>
+                        </div>
+                        <div class="book-card" data-price="52.8" data-type="hot">
+                            <img src="../image/s9.jpg" alt="洪恩识字" class="book-img">
+                            <div class="book-info">
+                                <h3 class="book-title">洪恩识字</h3>
+                                <p class="book-author">洪恩教育 著</p>
+                                <span class="price">¥52.8</span>
+                                <span class="original-price">¥88.0</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="back-to-top">↑</a>
+    <div class="floating-cart">
+        🛒
+        <span class="cart-count">0</span>
+    </div>
+    
+
+    <script>
+        const filterSelect = document.getElementById('filterSelect');
+        const bookCards = document.querySelectorAll('.book-card');
+        filterSelect.addEventListener('change', () => {
+            const filter = filterSelect.value;
+            bookCards.forEach(card => {
+                const price = parseFloat(card.dataset.price);
+                const type = card.dataset.type;
+                let show = false;
+                switch(filter) {
+                    case 'all':
+                        show = true;
+                        break;
+                    case '50以下':
+                        show = price < 50;
+                        break;
+                    case '50-100':
+                        show = price >= 50 && price <= 100;
+                        break;
+                    case '100以上':
+                        show = price > 100;
+                        break;
+                    case 'new':
+                        show = type === 'new';
+                        break;
+                    case 'hot':
+                        show = type === 'hot';
+                        break;
+                }
+                card.style.display = show ? 'block' : 'none';
+            });
+        });
+        const backToTopBtn = document.querySelector('.back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+        backToTopBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        const cartIcon = document.querySelector('.floating-cart');
+        const cartCount = document.querySelector('.cart-count');
+        let count = 0;
+        bookCards.forEach(card => {
+            card.addEventListener('click', () => {
+                count++;
+                cartCount.textContent = count;
+                cartIcon.classList.add('animate');
+                setTimeout(() => {
+                    cartIcon.classList.remove('animate');
+                }, 500);
+            });
+        });
+        cartIcon.addEventListener('click', () => {
+            alert(`您的购物车中有 ${count} 件商品`);
+        });
+        const loginModal = document.querySelector('.login-modal');
+        const loginLink = document.querySelector('.login-link');
+        const closeModal = document.querySelector('.close-modal');
+        const loginForm = document.getElementById('loginForm');
+        const registerLink = document.querySelector('.register-link');
+        loginLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            loginModal.classList.add('show');
+            document.body.style.overflow = 'hidden'; 
+        });
+        closeModal.addEventListener('click', () => {
+            loginModal.classList.remove('show');
+            document.body.style.overflow = ''; 
+        });
+        loginModal.addEventListener('click', (e) => {
+            if (e.target === loginModal) {
+                loginModal.classList.remove('show');
+                document.body.style.overflow = '';
+            }
+        });
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('登录功能待实现');
+            loginModal.classList.remove('show');
+            document.body.style.overflow = '';
+        });
+        registerLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('注册功能待实现');
+        });
+    </script>
+</body>
+</html>
