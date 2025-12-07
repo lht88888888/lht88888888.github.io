@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+        <title>数字展销平台--图书促销</title>
+        <link rel="stylesheet" href="s.css">
+    </head>
+    <body>
+        <div class="nav-container">
+            <ul class="nav-list">
+                <img src="../image/2.jpg" alt="" class="nav-img1">
+                <img src="../image/2.jpg" alt="" class="nav-img2">
+                <img src="../image/2.jpg" alt="" class="nav-img3">
+                <li class="nav-item"><a href="#" class="nav-link active">天空之城</a></li>
+                <li class="nav-item"><a href="#" class="nav-link active">首页推荐</a></li>
+                <li class="nav-item"><a href="#" class="nav-link active">热销专区</a></li>
+                <li class="nav-item"><a href="#" class="nav-link active">折扣专区</a></li>
+                <li class="nav-item"><a href="#" class="nav-link active">新品上市</a></li>
+                <div class="dropdown">
+                    <li class="nav-item"> <button class="dropdown-btn" class="nav-link active">图书分类</button></li>
+                    <div class="dropdown-content">
+                        <li><a href="#">经典文学</a></li>
+                        <li><a href="#">小说作品</a></li>
+                        <li><a href="#">儿童启蒙</a></li>
+                        <li><a href="#">科普读物</a></li>
+                        <li><a href="#">历史传记</a></li>
+                        <li><a href="#">哲学宗教</a></li>
+                        <li><a href="#">经济管理</a></li>
+                        <li><a href="#">艺术设计</a></li>
+                        <li><a href="#">生活休闲</a></li>
+                        <li><a href="#">周刊杂志</a></li>
+                    </div>
+                </div>
+                <li class="nav-item"><a href="#" class="nav-link active">客服中心</a></li>
+                <li class="nav-item"><a href="#" class="nav-link active">购物车</a></li>
+                <li class="nav-item"> <label for="login-toggle" class="nav-link login-trigger">登录</label></li>
+                <li class="nav-tu" class="nav-item" class="nav-link active">🔍</li>
+                <li class="nav-tu" class="nav-item" class="nav-link active">🛒</li>
+            </ul>
+            
+        </div>
+       
+        <input type="checkbox" id="login-toggle" class="login-toggle">
+        <div class="login-modal">
+            <div class="login-form-container">
+                <label for="login-toggle" class="close-btn">&times;</label>
+                <h2>用户登录</h2>
+                <form action="" method="get" target="_self" class="login-form">
+                    <div class="form-group">
+                        <label for="use">用户名</label>
+                        <input type="text" name="user" value="" id="use" placeholder="输入用户名" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="word">密码</label>
+                        <input type="password" name="pass" value="" id="word" placeholder="输入密码" required>
+                    </div>
+                    <div class="remember">
+                        <input type="checkbox" id="remember">
+                        <label for="remember">记住我</label>
+                    </div>
+                    <button type="submit" class="login-btn">登录</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="main-container">
+            <div class="category-container">
+                <h3 class="category-title">图书分类</h3>
+                <ul class="category-list">
+                    <li class="category-item"><a href="#" class="category-link">经典文学</a></li>
+                    <li class="category-item"><a href="#" class="category-link">小说作品</a></li>
+                    <li class="category-item"><a href="#" class="category-link">儿童启蒙</a></li>
+                    <li class="category-item"><a href="#" class="category-link">科普读物</a></li>
+                    <li class="category-item"><a href="#" class="category-link">历史传记</a></li>
+                    <li class="category-item"><a href="#" class="category-link">哲学宗教</a></li>
+                    <li class="category-item"><a href="#" class="category-link">经济管理</a></li>
+                    <li class="category-item"><a href="#" class="category-link">艺术设计</a></li>
+                    <li class="category-item"><a href="#" class="category-link">生活休闲</a></li>
+                    <li class="category-item"><a href="#" class="category-link">周刊杂志</a></li>
+                </ul>
+            </div>
+            
+            <div class="main-category">
+                <div class="carousel">
+                    
+                        <img src="../image/15.jpg" alt="" class="carousel-img">
+                        <img src="../image/11.jpg" alt="" class="carousel-img">
+                        <img src="../image/12.jpg" alt="" class="carousel-img">
+                        <img src="../image/13.jpg" alt="" class="carousel-img">
+                    
+                </div>
+                <div class="book-list">
+                    <div class="book-card">
+                        <img src="../image/s6.jpg" alt="窄门" class="book-img">
+                        <div class="book-info">
+                            <h3 class="book-title">窄门</h3>
+                            <p class="book-author">安德烈.纪德 著</p>
+                            <p class="price">¥19.9</p>
+                        </div>
+                    </div>
+                    
+                    <div class="book-card">
+                        <img src="../image/s5.jpg" alt="平凡的世界" class="book-img">
+                        <div class="book-info">
+                            <h3 class="book-title">平凡的世界</h3>
+                            <p class="book-author">路遥 著</p>
+                            <p class="price">¥27.5</p>
+                        </div>
+                    </div>
+                    <div class="book-card">
+                        <img src="../image/s7.jpg" alt="堂吉诃德" class="book-img">
+                        <div class="book-info">
+                            <h3 class="book-title">堂吉诃德</h3>
+                            <p class="book-author">塞万提斯 著</p>
+                            <p class="price">¥64.0</p>
+                        </div>
+                    </div>
+                    <div class="book-card">
+                        <img src="../image/s8.jpg" alt="" class="book-img">
+                        <div class="book-info">
+                            <h3 class="book-title">追风筝的人</h3>
+                            <p class="book-author">胡塞尼 著</p>
+                            <p class="price">¥40.8</p>
+                        </div>
+                    </div>
+                    <div class="book-card">
+                        <img src="../image/s9.jpg" alt="" class="book-img">
+                        <div class="book-info">
+                            <h3 class="book-title">钢铁是怎样炼成的</h3>
+                            <p class="book-author">奥斯特洛夫斯基 著</p>
+                            <p class="price">¥35.4</p>
+                        </div>
+                    </div>
+                    <div class="book-card">
+                        <img src="../image/s10.jpg" alt="" class="book-img">
+                        <div class="book-info">
+                            <h3 class="book-title">飘</h3>
+                            <p class="book-author">米切尔 著</p>
+                            <p class="price">¥29.9</p>
+                        </div>
+                    </div>
+                </div>    
+            </div>
+            
+            <div class="promo-container">
+                <img src="../image/1.jpg" alt="" class="cloud-img">
+                <h3>促销专区</h3>
+                <p>指尖翻过的每一页，都是成长的印记；案头常备的好书，是治愈迷茫的良方。<br>
+                不管你是追求深度思考的社科爱好者、沉迷奇幻世界的小说迷，还是深耕专业领域的学习者、陪伴孩子成长的家长，这里都有适配你的精选书目。<br>经典名著、畅销新书、实用工具书、少儿绘本全覆盖，从文字里见天地、增学识、悦身心。<br>
+                让阅读成为日常，让好书照亮生活～</p>
+            </div>
+        </div>
+        <a href="" class="gouwuche">🛒</a>
+        <a href="#top" class="back-to-top">↑</a>
+    </body>
+</html>
